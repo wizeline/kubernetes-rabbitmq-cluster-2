@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu
+set -eux
 
 # allow the container to be started with `--user`
 if [[ "$1" == rabbitmq* ]] && [ "$(id -u)" = '0' ]; then
@@ -304,5 +304,14 @@ if [ "$haveSslConfig" ] && [ -f "$combinedSsl" ]; then
 fi
 
 source /set_cluster_nodes.sh
+
+ls -la /etc/rabbitmq/
+echo ""
+cat  /etc/rabbitmq/clusterer.config
+echo ""
+cat /etc/rabbitmq/rabbitmq.config
+echo ""
+
+/set_ha.sh &
 
 exec "$@"
