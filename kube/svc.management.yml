@@ -1,12 +1,17 @@
 kind: "Service"
 apiVersion: v1
 metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-2:354533650916:certificate/f46b95cb-e76e-49a7-8c62-8355f5d5fb70
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
   name: {{SVC_NAME}}
 spec:
   type: {{SERVICE_TYPE}}
   selector:
     app: {{APP_NAME}}
-  sessionAffinity: ClientIP
+  # sessionAffinity: ClientIP
   ports:
     - name: management-console
-      port: 15672
+      port: 443
+      targetPort: 15672
