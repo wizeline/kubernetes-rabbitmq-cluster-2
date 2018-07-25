@@ -17,8 +17,8 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            cpu: 30m # 300m
-            memory: 100Mi # 5120Mi
+            cpu: 300m # 300m
+            memory: 256Mi # 5120Mi
         # livenessProbe:
         #   exec:
         #     command: ["rabbitmqctl", "status"]
